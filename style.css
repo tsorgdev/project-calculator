@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+
+body {
+    background-color: beige;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bold;
+    background-image: url(notebook-background.jpg);
+}
+#calculator {
+    background-color: #9AC0DA;
+    height: 960px;
+    width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-radius: 16px;
+}
+#display {
+    margin: 0px;
+    height: 164px;
+    font-size: 96px;
+    background-color: rgba(0, 0, 0, 0.959);
+    margin: 24px;
+    border-radius: 8px;
+    color: #74ee15;
+    font-family: "Doto";
+    justify-self: flex-end; 
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+#container {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+#numbers {
+    width: 420px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+}
+#symbols {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+button {
+    height: 120px;
+    width: 120px;
+    border-radius: 6px;
+    border-width: 6px;
+    background-color: lightgray;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 1000;
+    font-size: 36px;
+}
