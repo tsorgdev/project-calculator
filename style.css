@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
 
 body {
-    background-color: beige;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: bold;
     background-image: url(notebook-background.jpg);
@@ -56,4 +55,7 @@ button {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: 1000;
     font-size: 36px;
+}
+#symbols button {
+    height: 90px;
 }
