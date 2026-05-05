@@ -4,6 +4,7 @@ let operator = "";
 const display = document.querySelector("#display");
 const numButtons = document.querySelector("#numbers");
 const symButtons = document.querySelector("#symbols");
+const KEYS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Backspace", "/", "Enter", "-", "x", "=", "Delete", "."];
 
 function add(a, b) {
     return Math.round((a + b) * 100) / 100;
@@ -48,21 +49,21 @@ function updateFirstNumber(button) {
         return;
     }
     if (!firstNumber || firstNumber === "0" || firstNumber === "ERROR") {
-        firstNumber = button.textContent;
+        firstNumber = button;
     } else {
-        firstNumber += button.textContent;
+        firstNumber += button;
     }
     displayText();
 }
 
-function updateOperator(button) {
-    if (button === "back") {
+function updateOperator(symbol) {
+    if (symbol === "back") {
         operator = "";
-        displayText()
+        displayText();
         return;
     }
     if (firstNumber !== ".") {
-        operator = button.textContent;
+        operator = symbol;
         displayText();
     }
 }
@@ -79,9 +80,9 @@ function updateSecondNumber(button) {
         return;
     }
     if (!secondNumber || secondNumber === "0") {
-        secondNumber = button.textContent;
+        secondNumber = button;
     } else {
-        secondNumber += button.textContent;
+        secondNumber += button;
     }
     displayText();
 }
@@ -132,11 +133,12 @@ function clear() {
 }
 
 numButtons.addEventListener("click", event => {
+    const content = event.target.textContent;
     if (event.target.matches(".buttons")) {
         if (!operator) {
-            updateFirstNumber(event.target);
+            updateFirstNumber(content);
         } else {
-            updateSecondNumber(event.target);
+            updateSecondNumber(content);
         }
     }
     if (event.target.matches("#back")) {
@@ -148,12 +150,55 @@ numButtons.addEventListener("click", event => {
 });
 symButtons.addEventListener("click", event => {
     if (event.target.matches(".buttons") && firstNumber) {
-        updateOperator(event.target);
+        updateOperator(event.target.textContent);
     }
     if (event.target.matches("#equals")) {
         equals();
     }
     if (event.target.matches("#clear")) {
         clear();
+    }
+});
+document.addEventListener("keydown", event => {
+    const key = event.key;
+    if (event.shiftKey) {
+        if (event.key === "+") {
+            updateOperator("+");
+        }
+        if (event.key === "*") {
+            updateOperator("x");
+        }
+    }
+    if (KEYS.includes(key)) {
+        switch (key) {
+            case "Backspace":
+                backspace();
+                break;
+            case "Enter": case "=":
+                equals();
+                break;
+            case "Delete":
+                clear();
+                break;
+            case "-":
+                updateOperator("\u2212");
+                break;
+            case "x":
+                updateOperator("x");
+                break;
+            case "/":
+                updateOperator("\u00f7");
+                break;
+            case ".":
+                decimal();
+                break;
+            default:
+                if (!operator) {
+                    updateFirstNumber(key);
+                } else {
+                    updateSecondNumber(key);
+                }
+                break;
+        }
     }
 });
